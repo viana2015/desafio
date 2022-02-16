@@ -31,6 +31,7 @@ public class EmpresaDTO implements Serializable {
 		this.cnpj = entity.getCnpj();
 		this.telefone = entity.getTelefone();
 		this.responsavelLegal = entity.getResponsavelLegal();
+		
 	}
 	
 	

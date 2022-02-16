@@ -16,6 +16,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class ClienteEndereco implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@SequenceGenerator(name = "SequenceEnderecoCliente", sequenceName = "SEQ_ENDERECO", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceEnderecoCliente")
@@ -28,6 +29,7 @@ public class ClienteEndereco implements Serializable{
 	private String bairro;
 	private String cidade;
 	private String uf;
+	
 	@ManyToOne
 	@JoinColumn(name = "ID_CLIENTE")
 	private Cliente cliente;

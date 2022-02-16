@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,10 +23,9 @@ public class VendaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long idVenda;
-	
+	private Long vendaProdutoId;
 	private Long idCliente;
 	private String nomeCliente;
-	
 	private Long idEmpresa;
 	private String nomeFantasia;
 	
@@ -50,7 +47,7 @@ public class VendaDTO implements Serializable {
 	public VendaDTO(Long idVenda, Long idCliente, String nomeCliente, Long idEmpresa, String nomeFantasia,
 			LocalDateTime dataVenda, BigDecimal valorTotal, BigDecimal valorDesconto, BigDecimal valorAcrescimo,
 			BigDecimal valorPago, MetodoPagamento metodoPagamento) {
-		super();
+	
 		this.idVenda = idVenda;
 		this.idCliente = idCliente;
 		this.nomeCliente = nomeCliente;
@@ -80,18 +77,27 @@ public class VendaDTO implements Serializable {
 		valorAcrescimo = entity.getValorAcrescimo();
 		valorPago = entity.getValorPago();
 		metodoPagamento = entity.getMetodoPagamento();
-		vendaProdutos = entity.getProdutos().stream()
-				.map(x -> new VendaProdutoDTO(x)).collect(Collectors.toList());
+		entity.getProdutos().forEach(prod -> this.vendaProdutos.add(new VendaProdutoDTO(prod)));
+		//vendaProdutos = entity.getProdutos().stream()
+		//		.map(x -> new VendaProdutoDTO(x)).collect(Collectors.toList());
 		
 	}
 	
-	/*public VendaDTO(Venda entity, Set<VendaProduto> vendProdutos) {
+		/*public VendaDTO(Venda entity, List<VendaProduto> vendProdutos) {
 		this(entity);
-		
 		vendProdutos.forEach(prod -> this.vendaProdutos.add(new VendaProdutoDTO()));
 		//entity.getProdutos().forEach(p->p.getVendaProdutoId().setVenda(entity));
 	}
-*/
-	
-	
+
+	*/
+	/*public VendaDTO(Venda entity, List<VendaProduto> produtos) {
+		this(entity);
+		produtos.forEach(prod -> this.produtos.add(new VendaProdutoDTO(prod)));
+	}
+	*/
 }
+
+
+
+
+

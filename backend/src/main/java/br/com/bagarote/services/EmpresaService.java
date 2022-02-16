@@ -5,11 +5,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.bagarote.dto.EmpresaDTO;
 import br.com.bagarote.dto.EmpresaSimpleDTO;
@@ -22,6 +23,8 @@ public class EmpresaService {
 	@Autowired
 	private EmpresaRepository repository;
 	
+	
+	@Transactional(readOnly = true)
 	public ResponseEntity<List<EmpresaSimpleDTO>> getAll() {
 		List<Empresa> entity = repository.findAll();
 		List<EmpresaSimpleDTO> listDTO =  entity.stream().map(obj -> new EmpresaSimpleDTO(obj)).collect(Collectors.toList());
@@ -30,13 +33,14 @@ public class EmpresaService {
 		
     }
 	
+	@Transactional(readOnly = true)
 	public EmpresaDTO getByIdEmpresa(Long idEmpresa) {
 		Optional<Empresa> obj = repository.findById(idEmpresa);
 		Empresa entity = obj.orElseThrow(() -> new ResourceNotFoundException("Empresa não encontrado para este id informado"));
 	    return new EmpresaDTO(entity);
     }
 	
-	@Transactional
+	
 	public EmpresaDTO create(EmpresaDTO objDto) {
 	    Empresa entity = new Empresa();
 	    entity.setNomeFantasia(objDto.getNomeFantasia());
@@ -58,6 +62,7 @@ public class EmpresaService {
 		    entity.setCnpj(objDto.getCnpj());
 		    entity.setTelefone(objDto.getTelefone());
 		    entity.setResponsavelLegal(objDto.getResponsavelLegal());
+		    
 	    	entity = repository.save(entity);
 	    	return new EmpresaDTO(entity);
 			
@@ -66,5 +71,7 @@ public class EmpresaService {
 		}
 		
 	}
+	
+	
 		
 }

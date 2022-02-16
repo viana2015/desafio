@@ -27,7 +27,7 @@ public class EmpresaController {
 	
 	@GetMapping
 	public ResponseEntity<List<EmpresaSimpleDTO>> getAll() {
-	    return service.getAll();
+		return service.getAll();
     }
 	
 	@GetMapping("/{idEmpresa}")

@@ -18,6 +18,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @NoArgsConstructor
 public class Cliente implements Serializable{
@@ -33,6 +34,7 @@ public class Cliente implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "ID_EMPRESA")
 	private Empresa empresa;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
 	private List<ClienteEndereco> enderecos;
 	

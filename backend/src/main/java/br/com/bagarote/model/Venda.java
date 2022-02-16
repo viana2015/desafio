@@ -18,17 +18,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @NoArgsConstructor
 public class Venda implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@SequenceGenerator(name = "SequenceVenda", sequenceName = "SEQ_VENDA", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceVenda")
+	@SequenceGenerator(name = "SequenceVenda", sequenceName = "SEQ_VENDA", allocationSize = 1)
 	@EqualsAndHashCode.Include
 	private Long idVenda;
 	@ManyToOne
@@ -47,7 +51,8 @@ public class Venda implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private MetodoPagamento metodoPagamento;
 	
-	@OneToMany
+	@Setter(value = AccessLevel.NONE)
+	@OneToMany(mappedBy = "vendaProdutoId.venda")
 	private List<VendaProduto> produtos = new ArrayList<>();
 
 	public Venda(Long idVenda, Cliente cliente, Empresa empresa, LocalDateTime dataVenda, BigDecimal valorTotal,
@@ -65,6 +70,5 @@ public class Venda implements Serializable{
 		this.metodoPagamento = metodoPagamento;
 	}
 
-	
 	
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,10 +35,14 @@ public class Empresa implements Serializable{
 	private String cnpj;
 	private String telefone;
 	private String responsavelLegal;
+	
 	@OneToMany(mappedBy = "empresa")
 	private List<Cliente> clientes;
+	
+	
 	@OneToMany(mappedBy = "empresa")
 	private List<Produto> produtos;
+	
 	@OneToMany(mappedBy = "empresa")
 	private List<Venda> vendas;
 }

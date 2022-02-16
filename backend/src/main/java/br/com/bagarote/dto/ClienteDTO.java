@@ -1,8 +1,11 @@
 package br.com.bagarote.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.bagarote.model.Cliente;
+import br.com.bagarote.model.ClienteEndereco;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +23,9 @@ public class ClienteDTO implements Serializable {
 	private String cpf;
 	private String telefone;
 	
-	private EmpresaDTO empresa;
+	//private EmpresaDTO empresa;
+	
+	//private List<ClienteEndereco> enderecos = new ArrayList<>();
 	
 	
 	public ClienteDTO(Cliente entity) {
@@ -31,7 +36,9 @@ public class ClienteDTO implements Serializable {
 		this.telefone = entity.getCpf();
 		//empresaId = entity.getEmpresa().getIdEmpresa();
 		//nomeFantasia = entity.getEmpresa().getNomeFantasia();
-		empresa = new EmpresaDTO(entity.getEmpresa());
+		//empresa = new EmpresaDTO(entity.getEmpresa());
+		
 	}
+	
 	
 }

@@ -28,7 +28,7 @@ private static final long serialVersionUID = 1L;
 	private BigDecimal valorUnitario;
 	private Integer qtd;
 	private BigDecimal valorTotal;
-
+	
 	@Data
 	@Builder
 	@AllArgsConstructor
@@ -36,12 +36,15 @@ private static final long serialVersionUID = 1L;
 	@Embeddable
 	public static class VendaProdutoId implements Serializable {
 		private static final long serialVersionUID = 1L;
-		@ManyToOne
-		@JoinColumn(name = "ID_VENDA")
-		private Venda venda;
-		@ManyToOne
-		@JoinColumn(name = "ID_PRODUTO")
-		private Produto produto;
+			@ManyToOne
+			@JoinColumn(name = "ID_VENDA")
+			private Venda venda;
+			@ManyToOne
+			@JoinColumn(name = "ID_PRODUTO")
+			private Produto produto;
+		
+		
 	}
+
 	
 }

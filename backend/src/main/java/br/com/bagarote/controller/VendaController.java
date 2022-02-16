@@ -26,13 +26,14 @@ public class VendaController {
 	
 	@GetMapping
 	public ResponseEntity<Page<VendaDTO>> getAll(Pageable pageable) {
-		Page<VendaDTO> list = service.getAll(pageable);
-	    return ResponseEntity.ok().body(list);
+		return service.getAll(pageable);
+		//Page<VendaDTO> list = service.getAll(pageable);
+	    //return ResponseEntity.ok().body(list);
     }
 	
 	@PostMapping
 	public ResponseEntity<VendaDTO> create(@RequestBody VendaDTO objDto) {
-	    objDto = service.create(objDto);
+	    objDto = service.insert(objDto);
 	    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{idVenda}").
 	    										buildAndExpand(objDto.getIdCliente()).toUri();
 	    return ResponseEntity.created(uri).body(objDto);

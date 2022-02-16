@@ -3,13 +3,11 @@ package br.com.bagarote.dto;
 import java.math.BigDecimal;
 
 import br.com.bagarote.model.Produto;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class ProdutoDTO {
@@ -22,7 +20,19 @@ public class ProdutoDTO {
 	
 	private EmpresaDTO empresa;
 
+	public ProdutoDTO(Long idProduto, String produto, String descricao, BigDecimal valorBase, byte[] imagemProduto,
+			EmpresaDTO empresa) {
+	
+		this.idProduto = idProduto;
+		this.produto = produto;
+		this.descricao = descricao;
+		this.valorBase = valorBase;
+		this.imagemProduto = imagemProduto;
+		this.empresa = empresa;
+	}
+	
 	public ProdutoDTO(Produto entity) {
+		
 		idProduto = entity.getIdProduto();
 		produto = entity.getProduto();
 		descricao = entity.getDescricao();
@@ -30,8 +40,5 @@ public class ProdutoDTO {
 		imagemProduto = entity.getImagemProduto();
 		empresa = new EmpresaDTO(entity.getEmpresa());
 	}
-	
-	
-	
-	
+			
 }

@@ -11,19 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Builder
-@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 public class Produto implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@SequenceGenerator(name = "SequenceProduto", sequenceName = "SEQ_PRODUTO", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceProduto")
@@ -37,4 +35,17 @@ public class Produto implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "ID_EMPRESA")
 	private Empresa empresa;
+
+	public Produto(Long idProduto, String produto, String descricao, BigDecimal valorBase, byte[] imagemProduto,
+			Empresa empresa) {
+		super();
+		this.idProduto = idProduto;
+		this.produto = produto;
+		this.descricao = descricao;
+		this.valorBase = valorBase;
+		this.imagemProduto = imagemProduto;
+		this.empresa = empresa;
+	}
+	
+	
 }

@@ -43,11 +43,11 @@ public class ClienteService {
 	    entity.setCpf(objDto.getCpf());
 	    entity.setTelefone(objDto.getTelefone()); 
 	    
-	    Empresa emp = new Empresa();
+	   /* Empresa emp = new Empresa();
 	    emp.setIdEmpresa(objDto.getEmpresa().getIdEmpresa());
-	    emp.setNomeFantasia(objDto.getEmpresa().getNomeFantasia());
+	    //emp.setNomeFantasia(objDto.getEmpresa().getNomeFantasia());
 	    entity.setEmpresa(emp);
-	    
+	    */
 	    entity = repository.save(entity);
 	    return new ClienteDTO(entity);
 	    	
@@ -62,11 +62,11 @@ public class ClienteService {
 	    	entity.setCpf(objDto.getCpf());
 	    	entity.setTelefone(objDto.getTelefone());
 	    	
-	    	Empresa emp = new Empresa();
-		    //emp.setIdEmpresa(objDto.getEmpresaId());
+	    	/*Empresa emp = new Empresa();
+		    emp.setIdEmpresa(objDto.getEmpresa().getIdEmpresa());
 		    //emp.setNomeFantasia(objDto.getNomeFantasia());
 		    entity.setEmpresa(emp);
-	    	
+	    	*/
 	    	entity = repository.save(entity);
 	    	return new ClienteDTO(entity);
 			

@@ -1,6 +1,5 @@
 package br.com.bagarote.dto;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import br.com.bagarote.model.VendaProduto;
@@ -14,22 +13,24 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class VendaProdutoDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class VendaProdutoDTO {
 
-	private VendaProdutoId vendaProdutoId;
 	private BigDecimal valorUnitario;
 	private Integer qtd;
 	private BigDecimal valorTotal;
+	private VendaDTO venda;
+	private ProdutoDTO produto;
 	
 	
 	public VendaProdutoDTO(VendaProduto entity) {
-		super();
-		vendaProdutoId = entity.getVendaProdutoId();
+		//vendaProdutoId = entity.getVendaProdutoId();
 		valorUnitario = entity.getValorUnitario();
 		qtd = entity.getQtd();
 		valorTotal = entity.getValorTotal();
+		//venda = new VendaDTO();
+		//produto = new ProdutoDTO();
 	}
+		
 	
 	
 }
